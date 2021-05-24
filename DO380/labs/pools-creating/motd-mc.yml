@@ -3,7 +3,7 @@ kind: MachineConfig
 metadata:
   labels:
     machineconfiguration.openshift.io/role: infra
-  name: 50-motd
+  name: 50-infra 
 spec:
   config:
     ignition:
