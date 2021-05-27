@@ -21,7 +21,7 @@ spec:
       storage:
         storageClassName: "local-blk"
         size: 20G
-      redundancyPolicy: "MultipleRedundancy" 
+      redundancyPolicy: "MultipleRedundancy"
       resources:
         limits:
           memory: "8Gi"
