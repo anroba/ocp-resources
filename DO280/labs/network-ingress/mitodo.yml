@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mio-https
+  labels:
+    app: mio-https
+    name: mio-https
+  namespace: network-ingress
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mio-https
+      name: mio-https
+  template:
+    metadata:
+      labels:
+        app: mio-https
+        name: mio-https
+    spec:
+      containers:
+      - resources:
+          limits:
+            cpu: '0.5'
+        image: quay.io/redhattraining/todo-angular:v1.2
+        name: mio-https
+        ports:
+        - containerPort: 8080
+          name: mio-https
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: mio-https
+    name: mio-https
+  name: mio-https
+spec:
+  ports:
+  - name: https
+    port: 8443
+    protocol: TCP
+    targetPort: 8443
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    name: mio-https
